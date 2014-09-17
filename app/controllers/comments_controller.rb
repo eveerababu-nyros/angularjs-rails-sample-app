@@ -3,28 +3,38 @@ class CommentsController < ApplicationController
   # GET /comments.json
   respond_to :json
   def index
-    #puts params.inspect
-    #post = Post.find(params[:id])
-    respond_with(@comments = Comments.all)
+    puts params.inspect
+    post = Post.find(params[:id])
+		puts "########################################index"
+		puts post
+		puts post.comments
+    respond_with(@comments = post.comments)
   end
 
   # GET /comments/1
   # GET /comments/1.json
   def show
-    @comment = Comment.find(params[:id])
-    respond_with(@comment)
+		@post = Post.find(params[:id])
+		puts "########################################"
+		puts @post.id
+		puts @post.comments.size
+    #@comment = Comment.find(params[:id])
+    respond_with(@post.comments)
   end
 
   
   # POST /comments
   # POST /comments.json
   def create
+		puts params.inspect
     @comment = Comment.new()
     @comment.comment = params[:comment]
-    @comment.post_id = 1
+    @comment.post_id = params[:post_id]
     @comment.save
     post = Post.find(@comment.post_id)
-    respond_with(@comments = post.comments.all)
+		@comments = post.comments.all
+		puts @comments.inspect
+    respond_with(post)
   end
 
   # PUT /comments/1

@@ -1,6 +1,6 @@
 
 <h1>Posts</h1>
-<a href="/#posts/add"  class="pull-right btn btn-mini btn-primary " style="margin-top:-36px;">Add Post </a>
+
 <div ng-show = 'posts == 0' class="">
   No Posts found.
 </div>
@@ -10,6 +10,7 @@
 		<tr>
 			<th>Name</th>
 			<th>Description</th>
+			<th style="text-align:center"> Actions </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,8 +18,11 @@
 			<td>{{post.name}}</td>
 			<td>{{post.description}}</td>
 			<td> <a href="#/posts/{{post.id}}"> show </a> </td>	
+
 		</tr>
 	</tbody>
 	
 </table>
 </div>
+
+<a href="/#posts/add"  class="btn btn-primary " >Add Post </a>

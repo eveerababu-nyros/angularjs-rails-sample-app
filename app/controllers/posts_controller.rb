@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+		@comments = @post.comments
     respond_with(@post)
   end
 
@@ -17,9 +18,16 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
-    @post.save
-    respond_with(@posts = Post.all)
+		puts "#########################################"
+		puts params[:name].inspect
+		@post_find = Post.find_by_name(params[:name])
+		if @post_find.nil?
+	    @post = Post.new(params[:post])
+  	  @post.save
+  	  respond_with(@post)
+		else
+			respond_with(@post_find)
+		end
   end
 
   # PUT /posts/1

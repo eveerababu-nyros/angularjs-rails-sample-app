@@ -12,3 +12,7 @@ angular.module('postsService', ['ngResource'])
       destroy: { method: 'DELETE' }
     });
   });
+
+
+
+
